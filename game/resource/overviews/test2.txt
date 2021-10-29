@@ -1,0 +1,8 @@
+test2
+{
+	material materials/overviews/test2.vmat
+	pos_x -1792
+	pos_y 1792
+	scale 3.500
+}
+

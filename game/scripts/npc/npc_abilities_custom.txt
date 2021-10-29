@@ -1,0 +1,499 @@
+// Dota Heroes File
+"DOTAAbilities"
+{
+	"Version"		"1"
+
+	//=================================================================================================================
+	// Templar Assassin: Refraction Holdout
+	//=================================================================================================================
+	"templar_assassin_refraction_holdout"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"17.0 17.0 17.0 17.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_absorb"				"200 300 400 500"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_damage"				"20 40 60 80"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"17.0 17.0 17.0 17.0"
+			}
+		}
+	}
+	// Bing Test
+	"summon_roshan"
+	{
+		// General        
+		"BaseClass"                "ability_datadriven"
+		"AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
+		// Time         
+		"AbilityCooldown"                "0.0"
+		// Cost        
+		"AbilityManaCost"                "0"
+		// Special        
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                    "FIELD_FLOAT"
+				"duration"                    "10.0"
+			}
+		}
+		"OnSpellStart"
+		{
+			"SpawnUnit"
+			{
+				"UnitName"    "npc_dota_neutral_black_dragon"
+				"UnitCount"    "1"
+				"SpawnRadius"    "200"
+				"Target"        "CASTER"
+
+				"OnSpawn"
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"    "modifier_kill"
+						"Target"        "TARGET"
+						"Duration"        "%duration"
+					}
+				}
+			}
+			"SpawnUnit"
+			{
+				"UnitName"    "npc_dota_neutral_black_dragon"
+				"UnitCount"    "1"
+				"SpawnRadius"    "200"
+				"Target"        "CASTER"
+			}
+		}
+	}
+	// summoner abilities
+	"summon_one"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"AbilityTextureName"					"summon_one"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"FightRecapLevel"				"1"
+		"ScriptFile"					"abilities/summon_one"
+	}
+	"summon_axe"
+	{
+		// General        
+		"BaseClass"                "ability_datadriven"
+		"AbilityTextureName"	"axe_berserkers_call"
+		"AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"		"1"
+		// Time         
+		"AbilityCooldown"                "0.0"
+		// Cost        
+		"AbilityManaCost"                "4"
+		"OnSpellStart"
+		{
+			// "SpawnUnit"
+			// {
+			// 	"UnitName"    "custom_axe"
+			// 	"UnitCount"    "1"
+			// 	"SpawnRadius"    "200"
+			// 	"Target"        "CASTER"
+			// }
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/summon.lua"
+				"Function"		"SummonAxe"
+				"Target"		"CASTER"
+			}
+		}
+	}
+	"summon_bane"
+	{
+		// General        
+		"BaseClass"                "ability_datadriven"
+		"AbilityTextureName"		"bane_brain_sap"
+		"AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
+		// Time         
+		"AbilityCooldown"                "0.0"
+		// Cost        
+		"AbilityManaCost"                "3"
+		// Special        
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                    "FIELD_FLOAT"
+				"duration"                    "10.0"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/summon.lua"
+				"Function"		"SummonBane"
+				"Target"		"CASTER"
+			}
+		}
+	}
+	"summon_life_stealer"
+	{
+		// General        
+		"BaseClass"                "ability_datadriven"
+		"AbilityTextureName"		"life_stealer_rage"
+		"AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
+		// Time         
+		"AbilityCooldown"                "0.0"
+		// Cost        
+		"AbilityManaCost"                "3"
+		// Special        
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                    "FIELD_FLOAT"
+				"duration"                    "10.0"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/summon.lua"
+				"Function"		"SummonLifeStealer"
+				"Target"		"CASTER"
+			}
+		}
+	}
+	"summon_spirit_breaker"
+	{
+		// General        
+		"BaseClass"                "ability_datadriven"
+		"AbilityTextureName"		"spirit_breaker_nether_strike"
+		"AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
+		// Time         
+		"AbilityCooldown"                "0.0"
+		// Cost        
+		"AbilityManaCost"                "2"
+		// Special        
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                    "FIELD_FLOAT"
+				"duration"                    "10.0"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/summon.lua"
+				"Function"		"SummonSpiritBreaker"
+				"Target"		"CASTER"
+			}
+		}
+	}
+	"summon_rattletrap"
+	{
+		// General        
+		"BaseClass"                "ability_datadriven"
+		"AbilityTextureName"		"rattletrap_power_cogs"
+		"AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
+		// Time         
+		"AbilityCooldown"                "0.0"
+		// Cost        
+		"AbilityManaCost"                "2"
+		// Special        
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                    "FIELD_FLOAT"
+				"duration"                    "10.0"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/summon.lua"
+				"Function"		"SummonRattleTrap"
+				"Target"		"CASTER"
+			}
+		}
+	}
+	"summon_phantom_assassin"
+	{
+		// General        
+		"BaseClass"                "ability_datadriven"
+		"AbilityTextureName"		"phantom_assassin_blur"
+		"AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
+		// Time         
+		"AbilityCooldown"                "0.0"
+		// Cost        
+		"AbilityManaCost"                "4"
+		// Special        
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                    "FIELD_FLOAT"
+				"duration"                    "10.0"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/summon.lua"
+				"Function"		"SummonPhantomAssassin"
+				"Target"		"CASTER"
+			}
+		}
+	}
+	"summon_necrolyte"
+	{
+		// General        
+		"BaseClass"                "ability_datadriven"
+		"AbilityTextureName"		"necrolyte_reapers_scythe"
+		"AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
+		// Time         
+		"AbilityCooldown"                "0.0"
+		// Cost        
+		"AbilityManaCost"                "2"
+		// Special        
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                    "FIELD_FLOAT"
+				"duration"                    "10.0"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/summon.lua"
+				"Function"		"SummonNecrolyte"
+				"Target"		"CASTER"
+			}
+		}
+	}
+	"summon_chaos_knight"
+	{
+		// General        
+		"BaseClass"                "ability_datadriven"
+		"AbilityTextureName"	"chaos_knight_phantasm"
+		"AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
+		// Time         
+		"AbilityCooldown"                "0.0"
+		// Cost        
+		"AbilityManaCost"                "2"
+		// Special        
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                    "FIELD_FLOAT"
+				"duration"                    "10.0"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/summon.lua"
+				"Function"		"SummonChaosKnight"
+				"Target"		"CASTER"
+			}
+		}
+	}
+	// custom unit abilities
+	"custom_spirit_breaker_charge_of_darkness"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"spirit_breaker_charge_of_darkness"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_ALERT_TARGET | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"FightRecapLevel"				"1"
+
+		"AbilitySound"					"Hero_Spirit_Breaker.ChargeOfDarkness"
+		"HasScepterUpgrade"			"1"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastRange"				"0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"11"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	".30" // applies multiple modifiers
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"movement_speed"		"575"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_duration"			"2.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bash_radius"			"300"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"vision_radius"			"400"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"vision_duration"		"0.94"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"scepter_cooldown"		"7"
+				"RequiresScepter"			"1"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"scepter_speed"		"175"
+				"RequiresScepter"			"1"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"scepter_cast_point"		"0.1"
+				"RequiresScepter"			"1"
+			}
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+	}
+	"custom_spirit_breaker_greater_bash"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"spirit_breaker_greater_bash"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+		"AbilitySound"					"Hero_Spirit_Breaker.GreaterBash"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"1.5"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportBonus"	"40"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"chance_pct"			"17"
+				"LinkedSpecialBonus"	"special_bonus_unique_spirit_breaker_1"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage"				"32"
+				"LinkedSpecialBonus"	"special_bonus_unique_spirit_breaker_3"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"1.8"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"knockback_duration"	"0.5"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"knockback_distance"	"162"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"knockback_height"		"50"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_movespeed_pct"	"17"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"movespeed_duration"	"3.0"
+			}
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
+	}
+}
